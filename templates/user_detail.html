@@ -1,0 +1,42 @@
+<button><a href="{% url 'home' %}">Home</a></button> |
+<button><a href="{%  url 'logout' %}">Login</a></button>|
+<button><a href="{%  url 'signup' %}">Signup</a></button>|
+<button><a href="{%  url 'logout' %}">Logout</a></button>|
+<button><a href="{%  url 'add_tweet' %}">Tweet</a></button>|
+<button><a href="/user/{{user.id}}">Profile</a></button>|
+<button><a href="/notification/">Notifications</a></button>
+
+<h3>
+  {{author}}
+  </h3>
+{% if tweets_list %}
+    <h3>Tweets Totall: {{ tweets_list|length }}<h3>
+{% else %}
+    No Tweets.
+{% endif %}
+
+{% if author.following.all %}
+    <h3>Following Totall: {{ author.following.all.count }}<h3>
+{% else %}
+    No Following
+{% endif %}
+
+<br>
+{% comment %} {{user.following.all }} {% endcomment %}
+
+<br>
+{% if user.is_authenticated %}
+{% if author == request.user %}
+{% else %}
+{% if author in user.following.all %}
+<button><a href="/following/{{author.id}}/">UnFollow</a></button>
+{% else %}  
+<button><a href="/following/{{author.id}}/">Follow</a></button>
+{% endif %}  
+{% endif %}  
+{% endif %}  
+
+
+
+
+

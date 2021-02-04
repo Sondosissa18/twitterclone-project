@@ -1,0 +1,24 @@
+<button><a href="{% url 'home' %}">Home</a></button> |
+<button><a href="{%  url 'logout' %}">Login</a></button>|
+<button><a href="{%  url 'signup' %}">Signup</a></button>|
+<button><a href="{%  url 'logout' %}">Logout</a></button>|
+<button><a href="{%  url 'add_tweet' %}">Tweet</a></button>|
+<button><a href="/user/{{user.id}}">Profile</a></button>|
+<button><a href="/notification/">Notifications</a></button>
+
+
+<br>
+<br>
+
+Welcome, {{user.username }}
+<br>
+<h1>Submit a Tweet<h1>
+
+<div class="form-group">
+<form method="post" action="">
+  {% csrf_token %} {{ form.as_p}}
+  <input type="submit" class="btn btn-success" value="Submit" />
+</div>
+</form>
+<div>
+</div>

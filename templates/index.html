@@ -1,0 +1,55 @@
+<button><a href="{% url 'home' %}">Home</a></button> |
+<button><a href="{%  url 'logout' %}">Login</a></button>|
+<button><a href="{%  url 'signup' %}">Signup</a></button>|
+<button><a href="{%  url 'logout' %}">Logout</a></button>|
+<button><a href="{%  url 'add_tweet' %}">Tweet</a></button>|
+<button><a href="/user/{{user.id}}">Profile</a></button>|
+<button><a href="/notification/">Notifications</a></button>
+
+<br>
+<br>
+
+<br />
+{% if user.is_authenticated %} Welcome {{user.username }}! 
+
+<br />
+<strong>Currently logged-in user: </strong> {{request.user}}  {% else %}
+<p>You are not logged in</p>
+<a href="{% url 'login' %}">Log In</a> |
+<a href="{% url 'signup' %}">Sign Up</a>
+{% endif %}
+
+<br />
+<br />
+
+
+<h3> Notifications: {{notifications}}</h3>
+
+<br>
+{% for tweet in my_tweets %}
+
+<h4>Tweet : Id:{{tweet.id}}</h4>
+
+<ul>
+
+    <li>Created by: <a href="/user/{{tweet.user.id}}/">{{tweet.user}}</a></li>
+    <strong><li>{{ tweet.text }}</li></strong>
+    <strong><li>{{ tweet.created_at }}</li></strong>
+  </li>
+</ul>
+{% endfor %}
+
+{% for tweet in following_tweet %}
+
+
+<h4>Tweet : Id:{{tweet.id}}</h4>
+
+<ul>
+
+    <li>Created by: <a href="/user/{{tweet.user.id}}/">{{tweet.user}}</a></li>
+    <strong><li>{{ tweet.text }}</li></strong>
+    <strong><li>{{ tweet.created_at }}</li></strong>
+  </li>
+</ul>
+{% endfor %}
+
